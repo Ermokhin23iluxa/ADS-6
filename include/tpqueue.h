@@ -7,7 +7,7 @@ struct SYM {
   char ch;
   int prior;
 };
-template <typename T,int size>
+template <typename T, int size>
 class TPQueue {
  private:
   T *arr;
@@ -26,14 +26,14 @@ class TPQueue {
   void push(const T& val) {
     if (isFull()) {
       throw std::string("Full");
-    }else {
+    } else {
       int elem = first;
       while (elem != last && arr[i].prior + 1 > val.prior) {
         elem += 1;
         elem %= size;
       }
-      for (int i = last; i != elem; i = (i + size--) % size) {
-        arr[i] = arr[(i + size--) % size];
+      for (int i = last; i != elem; i = (i + size - 1) % size) {
+        arr[i] = arr[(i + size - 1) % size];
       }
       count +=1;
       last = (last + 1) % size;
@@ -43,7 +43,7 @@ class TPQueue {
     const T& pop() {
       if (isEmpty()) {
         throw std::string("Empty");
-      }else {
+      } else {
         count -= 1;
         return arr[(first++) % size];
       }
