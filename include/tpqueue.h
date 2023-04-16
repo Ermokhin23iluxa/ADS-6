@@ -4,30 +4,29 @@
 #include <string>
 #include <iostream>
 struct SYM {
-	char ch;
-	int prior;
+  char ch;
+  int prior;
 };
 template <typename T,int size>
 class TPQueue {
-private:
+ private:
   T *arr;
   int first, last, count;
 
-public:
+ public:
   TPQueue() :first(0), last(0), count(0) {
     arr = new T[size];
   }
   bool isEmpty()const {
     return count == 0;
   }
-	bool isFull()const {
+  bool isFull()const {
     return count == size;
   }
-	void push(const T& val) {
+  void push(const T& val) {
     if (isFull()) {
-	    throw std::string("Full");
-  }
-    else {
+      throw std::string("Full");
+    }else {
       int elem = first;
       while (elem != last && arr[i].prior + 1 > val.prior) {
         elem += 1;
@@ -44,8 +43,7 @@ public:
     const T& pop() {
       if (isEmpty()) {
         throw std::string("Empty");
-      }
-      else {
+      }else {
         count -= 1;
         return arr[(first++) % size];
       }
